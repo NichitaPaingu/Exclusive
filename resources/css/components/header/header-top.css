@@ -1,0 +1,25 @@
+
+.header-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+}
+.offer-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.offer-top h2 {
+    margin-right: 5px;
+}
+.shop-now{
+    color: purple;
+    text-decoration: none;
+}
+.shop-now:hover {
+    text-decoration: underline;
+}

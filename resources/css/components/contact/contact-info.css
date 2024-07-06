@@ -1,0 +1,44 @@
+
+.contact-info-block {
+    grid-column: span 1;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.contact-item {
+    margin-top: 20px;
+}
+.contact-item p{
+    margin-bottom: 10px;
+}
+
+.contact-heading {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.icon-text-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon-circle {
+    background-color: #dc3545;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .contact-info-block {
+        grid-column: span 1;
+    }
+}
+

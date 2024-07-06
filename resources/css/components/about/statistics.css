@@ -1,0 +1,44 @@
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    text-align: center;
+}
+
+
+.stat-item {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+}
+
+.stat-item.highlight {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.stat-icon {
+    font-size: 40px;
+    font-weight: bold;
+    background-color: black;
+    color: #fff;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 10px;
+    position: relative;
+}
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-label {
+    margin-top: 10px;
+    font-size: 16px;
+}

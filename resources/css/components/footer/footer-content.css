@@ -1,0 +1,49 @@
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    width: 100%;
+    padding: 20px;
+}
+
+.footer-block {
+    padding: 0 20px;
+    margin-top: 10px;
+}
+
+.footer-block h3, .footer-block h4 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footer-block p {
+    margin: 5px 0;
+}
+
+.subscribe-container {
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100%;
+}
+
+.subscribe-button {
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.subscribe-button i {
+    font-size: 15px;
+}

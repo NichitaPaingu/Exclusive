@@ -1,0 +1,68 @@
+.send-message-block {
+    grid-column: span 2;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: calc(33.33% - 10px);
+    box-sizing: border-box;
+    background-color: rgb(237, 237, 237);
+    color: rgb(0, 0, 0);
+}
+
+.form-group textarea {
+    height: 150px;
+    width: 100%;
+}
+.form-action {
+    display: flex;
+    justify-content: flex-end;
+}
+.btn-send-message {
+    background-color: #dc3545;
+    color: white;
+    padding: 20px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+#form-messages{
+    margin-top: 10px;
+}
+
+@media (max-width: 720px) {
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+    }
+    .form-action {
+        justify-content: flex-start;
+    }
+}
+@media (max-width: 600px) {
+    .contact-info-block {
+        grid-column: span 1;
+    }
+}
+

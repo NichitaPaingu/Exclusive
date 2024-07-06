@@ -1,0 +1,124 @@
+.header-main {
+    padding: 20px 0;
+    background-color: white;
+}
+
+.header-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+.search-and-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    background-color: #e7e7e7;
+    padding: 10px 20px 10px 10px; /* Padding for the icon */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.search-and-icons i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* profile */
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    width: 160px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.dropdown-menu a i {
+    margin-right: 10px;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logout-form {
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logout-button i {
+    margin-right: 10px;
+}
+
+.logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: underline;
+}

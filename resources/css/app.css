@@ -1,0 +1,55 @@
+@import url('components/header/header.css');
+@import url('components/footer/footer.css');
+@import url('components/main/main.css');
+@import url('components/breadcrumbs/breadcrumbs.css');
+@import url('components/errors/error-container.css');
+@import url('components/auth/auth.css');
+@import url('components/alert/alert.css');
+@import url('components/about/about.css');
+@import url('components/contact/contact.css');
+@import url('components/dashboard/dashboard.css');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#dynamic-content {
+    flex: 1;
+}
+.nav-link{
+    cursor: pointer;
+}
+
+.topik{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.topik h2{
+    margin-right: 10px;
+}
+.topik span{
+    color: rgb(211, 110, 110);
+}
+

@@ -1,0 +1,73 @@
+.dashboard {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+.sidebar li{
+    margin-left: 10px;
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a.active {
+    color: #e63946;
+    text-decoration: none;
+}
+.profile-link{
+    cursor: pointer;
+}
+.profile-link.active {
+    color: red;
+}
+.profile-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #e63946;
+}
+
+.profile-section p {
+    margin-bottom: 10px;
+}
+
+.btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e63946;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-edit:hover {
+    background-color: #d62828;
+}

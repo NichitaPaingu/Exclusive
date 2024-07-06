@@ -1,0 +1,36 @@
+.story-block {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.story-block .content {
+    flex: 1;
+    padding: 20px;
+}
+
+.story-block .content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.story-block .content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.story-block .image {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.story-block .image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

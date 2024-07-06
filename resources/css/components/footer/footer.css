@@ -1,0 +1,14 @@
+@import url(./footer-content.css);
+@import url(./footer-bottom.css);
+
+
+.footer {
+    background-color: black;
+    color: #e2e2e2;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
