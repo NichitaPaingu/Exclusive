@@ -1,29 +1,38 @@
-$(document).ready(function() {
-    $('#contact-form').on('submit', function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
+import axios from 'axios';
+import { showMessage } from '../navigation/messageHandlers';
 
-        $.ajax({
-            url: '/api/contact/send',
-            method: $(this).attr('method'),
-            data: formData,
-            success: function(response) {
-                if (response.message) {
-                    $('#message-container').html('<div class="alert alert-success">' + response.message + '</div>');
-                } else {
-                    $('#message-container').html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
-                }
-                $('#contact-form')[0].reset();
-            },
-            error: function(xhr) {
-                var errors = xhr.responseJSON.errors;
-                var errorMessages = '<div class="alert alert-danger"><ul>';
-                $.each(errors, function(key, value) {
-                    errorMessages += '<li>' + value[0] + '</li>';
+export function setupContactForm() {
+    const contactForm = document.querySelector('#contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
+    }
+}
+
+function handleContactSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    axios.post('/api/contact/send', formData)
+        .then(response => {
+            if (response.data.message) {
+                showMessage(response.data.message, 'success');
+                document.getElementById('contact-form').reset();
+            } else {
+                showMessage('Something went wrong. Please try again.', 'danger');
+            }
+        })
+        .catch(error => {
+            if (error.response && error.response.data && error.response.data.errors) {
+                const errors = error.response.data.errors;
+                let errorMessages = '<ul>';
+                Object.keys(errors).forEach(key => {
+                    errorMessages += `<li>${errors[key][0]}</li>`;
                 });
-                errorMessages += '</ul></div>';
-                $('#message-container').html(errorMessages);
+                errorMessages += '</ul>';
+                showMessage(errorMessages, 'danger');
+            } else {
+                showMessage('An unexpected error occurred. Please try again.', 'danger');
             }
         });
-    });
-});
+}
+

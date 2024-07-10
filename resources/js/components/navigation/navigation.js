@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { loadEventListenerAuth } from '../auth/auth.js';
 import { setupProfileLinks, loadProfileContent } from '../profile/profileHandlers.js';
-import { setupLoginForm } from '../auth/login.js'; // Импортируем setupLoginForm
 import { setupLogoutForm } from '../auth/logout.js'; // Импортируем setupLogoutForm
-import { setupRegisterForm } from '../auth/register.js'; // Импортируем setupRegisterForm
+import { setupContactForm } from '../mail/contact.js'; // Импортируем setupContactForm
+
 
 
 export function setupNavigation() {
@@ -29,6 +29,10 @@ export function setupNavigation() {
     }
 
     setupLogoutForm();
+
+    if (window.location.pathname === '/contact') {
+        setupContactForm();
+    }
 }
 
 function handleNavClick(event) {

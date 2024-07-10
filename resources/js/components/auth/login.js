@@ -13,7 +13,7 @@ function handleLoginSubmit(event) {
     const formData = new FormData(event.target);
 
     axios.post('/api/login', formData)
-        .then(response => {
+        .then(response => { 
             if (response.data.success) {
                 showMessage(response.data.success, 'success');
                 setTimeout(() => {

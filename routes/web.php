@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegisteredUserController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthViewController;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
@@ -18,11 +17,10 @@ Route::get('/404', function () {
 })->name('404');
 
 // AJAX routes
-Route::get('/ajax/register', [AuthController::class, 'showRegisterForm']);
-Route::get('/ajax/login', [AuthController::class, 'showLoginForm']);
+Route::get('/ajax/register', [AuthViewController::class, 'showRegisterForm']);
+Route::get('/ajax/login', [AuthViewController::class, 'showLoginForm']);
+Route::get('/auth', [AuthViewController::class, 'create'])->name('auth');
 
-// Основные маршруты для регистрации и входа
-Route::get('/auth', [RegisteredUserController::class, 'create'])->name('auth');
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 })->name('dashboard');
