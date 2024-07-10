@@ -2,51 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function info()
-    {
-        return view('dashboard.partials.profile-info', ['user' => Auth::user()]);
-    }
-
-    public function address()
-    {
-        return view('dashboard.partials.profile-address', ['user' => Auth::user()]);
-    }
-
-    public function payment()
-    {
-        return view('dashboard.partials.profile-payment', ['user' => Auth::user()]);
-    }
-
-    public function returns()
-    {
-        return view('dashboard.partials.profile-returns', ['user' => Auth::user()]);
-    }
-
-    public function cancellations()
-    {
-        return view('dashboard.partials.profile-cancellations', ['user' => Auth::user()]);
-    }
-
-    public function wishlist()
-    {
-        return view('dashboard.partials.profile-wishlist', ['user' => Auth::user()]);
-    }
-    public function cart()
-    {
-        return view('dashboard.partials.profile-cart', ['user' => Auth::user()]);
-    }
-
     public function editProfile()
     {
         return view('profile.partials.edit_profile');
     }
-
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
@@ -73,4 +39,3 @@ class ProfileController extends Controller
         return response()->json(['success' => 'Profile updated successfully!']);
     }
 }
-

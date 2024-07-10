@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
         ]);
 
         Auth::login($user);
-        
+
         $request->session()->regenerate();
 
         return response()->json(['success' => 'Регистрация прошла успешно', 'user' => Auth::user()]);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileViewController;
 use App\Http\Controllers\AuthViewController;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
@@ -26,13 +27,14 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // Profile
-Route::get('/profile/info', [ProfileController::class, 'info']);
-Route::get('/profile/address', [ProfileController::class, 'address']);
-Route::get('/profile/payment', [ProfileController::class, 'payment']);
-Route::get('/profile/returns', [ProfileController::class, 'returns']);
-Route::get('/profile/cancellations', [ProfileController::class, 'cancellations']);
-Route::get('/profile/wishlist', [ProfileController::class, 'wishlist']);
-Route::get('/profile/cart', [ProfileController::class, 'cart']);
+Route::get('/profile/info', [ProfileViewController::class, 'info']);
+Route::get('/profile/address', [ProfileViewController::class, 'address']);
+Route::get('/profile/payment', [ProfileViewController::class, 'payment']);
+Route::get('/profile/returns', [ProfileViewController::class, 'returns']);
+Route::get('/profile/cancellations', [ProfileViewController::class, 'cancellations']);
+Route::get('/profile/wishlist', [ProfileViewController::class, 'wishlist']);
+Route::get('/profile/cart', [ProfileViewController::class, 'cart']);
+
 Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
 Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
