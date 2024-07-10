@@ -52,7 +52,12 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->update($request->only('first_name', 'last_name', 'email'));
 
-        if ($request->filled('current_password') && $request->filled('new_password') && $request->filled('confirm_password')) {
+        if ($request->filled('current_password') || $request->filled('new_password') || $request->filled('confirm_password')) {
+            // Проверяем, заполнены ли все три поля пароля
+            if (!$request->filled('current_password') || !$request->filled('new_password') || !$request->filled('confirm_password')) {
+                return response()->json(['error' => 'Please fill out all password fields.'], 400);
+            }
+
             if (Hash::check($request->current_password, $user->password)) {
                 if ($request->new_password === $request->confirm_password) {
                     $user->password = Hash::make($request->new_password);

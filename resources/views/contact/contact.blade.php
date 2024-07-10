@@ -44,7 +44,6 @@
                         <button type="submit" class="btn-send-message">Send Message</button>
                     </div>
                 </form>
-                <div id="form-messages"></div>
             </div>
         </div>
     </div>

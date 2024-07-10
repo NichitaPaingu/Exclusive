@@ -19,35 +19,35 @@ class AuthController extends Controller
         return view('auth.partials.login');
     }
 
-    public function store(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //     ]);
 
-        $remember = $request->has('remember');
+    //     $remember = $request->has('remember');
 
-        if (!Auth::attempt($credentials, $remember)) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->withInput();
-        }
+    //     if (!Auth::attempt($credentials, $remember)) {
+    //         return back()->withErrors([
+    //             'email' => 'The provided credentials do not match our records.',
+    //         ])->withInput();
+    //     }
 
-        $request->session()->regenerate();
+    //     $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Вы успешно зашли в аккаунт');
-    }
+    //     return redirect()->route('dashboard')->with('success', 'Вы успешно зашли в аккаунт');
+    // }
 
-    public function destroy(Request $request)
-    {
-        Auth::logout();
+    // public function destroy(Request $request)
+    // {
+    //     Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
 
-        return redirect()->route('auth')->with('success', 'Вы успешно вышли из аккаунта');
-    }
+    //     return redirect()->route('auth')->with('success', 'Вы успешно вышли из аккаунта');
+    // }
 }
 
 

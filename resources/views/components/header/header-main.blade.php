@@ -27,7 +27,7 @@
                             <a class="nav-link" data-url="/dashboard"><i class="fa-regular fa-user"></i> Manage My Account</a>
                             <a class="nav-link" data-url="/orders"><i class="fa-solid fa-box"></i> My Order</a>
                             <a class="nav-link" data-url="/reviews"><i class="fa-solid fa-star"></i> My Reviews</a>
-                            <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                            <form id="logout-form" action="/api/logout" method="POST" class="logout-form">
                                 @csrf
                                 <button type="submit" class="logout-button">
                                     <i class="fa-solid fa-sign-out-alt"></i> Logout

@@ -1,19 +1,19 @@
 $(document).ready(function() {
     $('#contact-form').on('submit', function(event) {
-        event.preventDefault(); // предотвратить перезагрузку страницы
-        var formData = $(this).serialize(); // сериализация данных формы
+        event.preventDefault();
+        var formData = $(this).serialize();
 
         $.ajax({
-            url: '/api/contact/send', // обновленный URL
+            url: '/api/contact/send',
             method: $(this).attr('method'),
             data: formData,
             success: function(response) {
                 if (response.message) {
-                    $('#form-messages').html('<div class="alert alert-success">' + response.message + '</div>');
+                    $('#message-container').html('<div class="alert alert-success">' + response.message + '</div>');
                 } else {
-                    $('#form-messages').html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
+                    $('#message-container').html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
                 }
-                $('#contact-form')[0].reset(); // сброс формы
+                $('#contact-form')[0].reset();
             },
             error: function(xhr) {
                 var errors = xhr.responseJSON.errors;
@@ -22,7 +22,7 @@ $(document).ready(function() {
                     errorMessages += '<li>' + value[0] + '</li>';
                 });
                 errorMessages += '</ul></div>';
-                $('#form-messages').html(errorMessages);
+                $('#message-container').html(errorMessages);
             }
         });
     });

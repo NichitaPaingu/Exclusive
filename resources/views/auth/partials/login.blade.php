@@ -1,6 +1,6 @@
 <h2>Log in to Exclusive</h2>
 <p>Enter your details below</p>
-<form action="{{ route('login') }}" method="POST">
+<form id="login-form" action="/api/login" method="POST">
     @csrf
     <div class="form-group">
         <input type="email" name="email" placeholder="Email" required>

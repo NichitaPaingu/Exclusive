@@ -1,19 +1,22 @@
 import axios from 'axios';
-import { loadEventListenerAuth } from '../auth/auth.js'; // Импорт функции
+import { loadEventListenerAuth } from '../auth/auth.js';
+import { setupProfileLinks, loadProfileContent } from '../profile/profileHandlers.js';
+import { setupLoginForm } from '../auth/login.js'; // Импортируем setupLoginForm
+import { setupLogoutForm } from '../auth/logout.js'; // Импортируем setupLogoutForm
+import { setupRegisterForm } from '../auth/register.js'; // Импортируем setupRegisterForm
+
 
 export function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link, .breadcrumb-link');
 
     navLinks.forEach(link => {
-        link.removeEventListener('click', handleNavClick); // Удаляем предыдущий обработчик
-        link.addEventListener('click', handleNavClick); // Добавляем новый обработчик
+        link.removeEventListener('click', handleNavClick);
+        link.addEventListener('click', handleNavClick);
     });
 
-    // Handle back/forward buttons
-    window.removeEventListener('popstate', handlePopState); // Удаляем предыдущий обработчик
-    window.addEventListener('popstate', handlePopState); // Добавляем новый обработчик
+    window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', handlePopState);
 
-    // Инициализация профилей при загрузке, если находимся на странице dashboard
     if (location.pathname.startsWith('/dashboard')) {
         setupProfileLinks();
         const profileLinks = document.querySelectorAll('.profile-link');
@@ -24,6 +27,8 @@ export function setupNavigation() {
             loadProfileContent(profileUrl);
         }
     }
+
+    setupLogoutForm();
 }
 
 function handleNavClick(event) {
@@ -31,7 +36,7 @@ function handleNavClick(event) {
     const url = this.getAttribute('data-url');
     if (url.startsWith('/profile')) {
         history.pushState(null, '', '/dashboard');
-        loadPageContent('/dashboard', url); // Передаем url для загрузки профиля
+        loadPageContent('/dashboard', url);
     } else {
         history.pushState(null, '', url);
         loadPageContent(url);
@@ -84,94 +89,4 @@ function redirectTo404() {
         history.replaceState(null, '', '/404');
         loadPageContent('/404');
     }
-}
-
-function setupProfileLinks() {
-    const profileLinks = document.querySelectorAll('.profile-link');
-
-    profileLinks.forEach(link => {
-        link.removeEventListener('click', handleProfileLinkClick);
-        link.addEventListener('click', handleProfileLinkClick);
-    });
-
-    const editProfileBtn = document.querySelector('.btn-edit');
-    if (editProfileBtn) {
-        editProfileBtn.removeEventListener('click', handleEditProfileClick);
-        editProfileBtn.addEventListener('click', handleEditProfileClick);
-    }
-}
-
-function handleProfileLinkClick(event) {
-    event.preventDefault();
-    const url = this.getAttribute('data-url');
-    loadProfileContent(url);
-}
-
-function handleEditProfileClick(event) {
-    event.preventDefault();
-    const url = this.getAttribute('data-url');
-    loadProfileContent(url);
-}
-
-function loadProfileContent(url) {
-    axios.get(url)
-        .then(response => {
-            document.getElementById('profile-content').innerHTML = response.data;
-            setupProfileLinks();
-            setupEditProfileForm();
-            highlightActiveLink(url);
-        })
-        .catch(error => {
-            console.error('Error loading profile content:', error);
-        });
-}
-
-function setupEditProfileForm() {
-    const form = document.getElementById('edit-profile-form');
-    if (form) {
-        const cancelButton = form.querySelector('.btn-cancel');
-        if (cancelButton) {
-            cancelButton.addEventListener('click', function(event) {
-                showMessage("Update cancelled", 'success');
-                loadProfileContent('/profile/info');
-            });
-        }
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(form);
-            axios.post(form.action, formData)
-                .then(response => {
-                    showMessage(response.data.success, 'success'); // Используем функцию для показа сообщения
-                    loadProfileContent('/profile/info');
-                })
-                .catch(error => {
-                    console.error('Error updating profile:', error);
-                });
-        });
-    }
-}
-
-function showMessage(message, type) {
-    const messageContainer = document.getElementById('message-container');
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert alert-${type}`;
-    alertDiv.textContent = message;
-
-    messageContainer.appendChild(alertDiv);
-
-    setTimeout(() => {
-        alertDiv.remove();
-    }, 5000); // Убираем сообщение через 5 секунд
-}
-
-
-function highlightActiveLink(activeUrl) {
-    const profileLinks = document.querySelectorAll('.profile-link');
-    profileLinks.forEach(link => {
-        if (link.getAttribute('data-url') === activeUrl) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
 }

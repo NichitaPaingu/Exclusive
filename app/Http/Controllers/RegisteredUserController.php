@@ -14,24 +14,24 @@ class RegisteredUserController extends Controller
         return view('auth.main');
     }
 
-    public function store(Request $request)
-    {
-        $validatedAttributes = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email', 'max:255'],
-            'password' => ['required', Password::min(8)],
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validatedAttributes = $request->validate([
+    //         'first_name' => ['required', 'string', 'max:255'],
+    //         'last_name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'email', 'unique:users,email', 'max:255'],
+    //         'password' => ['required', Password::min(8)],
+    //     ]);
 
-        $user = User::create([
-            'first_name' => $validatedAttributes['first_name'],
-            'last_name' => $validatedAttributes['last_name'],
-            'email' => $validatedAttributes['email'],
-            'password' => bcrypt($validatedAttributes['password']),
-        ]);
+    //     $user = User::create([
+    //         'first_name' => $validatedAttributes['first_name'],
+    //         'last_name' => $validatedAttributes['last_name'],
+    //         'email' => $validatedAttributes['email'],
+    //         'password' => bcrypt($validatedAttributes['password']),
+    //     ]);
 
-        Auth::login($user);
+    //     Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Регистрация прошла успешно');
-    }
+    //     return redirect()->route('dashboard')->with('success', 'Регистрация прошла успешно');
+    // }
 }
