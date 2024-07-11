@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setupEditProfileForm } from './editProfileForm';
 import { setupAddressForms } from './addressHandlers';
+import { setupPaymentForms } from './paymentHandlers';
 
 export function setupProfileLinks() {
     const profileLinks = document.querySelectorAll('.profile-link');
@@ -36,6 +37,7 @@ export function loadProfileContent(url) {
             setupProfileLinks();
             setupEditProfileForm();
             setupAddressForms();
+            setupPaymentForms(); // Добавляем вызов setupPaymentForms
             highlightActiveLink(url);
         })
         .catch(error => {

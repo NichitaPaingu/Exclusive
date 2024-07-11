@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardViewController;
 use App\Http\Controllers\AuthViewController;
@@ -29,11 +30,8 @@ Route::middleware('auth')->group(function () {
         return view('dashboard.dashboard');
     })->name('dashboard');
 
-    Route::get('/profile/payment', [DashboardViewController::class, 'payment']);
     Route::get('/profile/returns', [DashboardViewController::class, 'returns']);
     Route::get('/profile/cancellations', [DashboardViewController::class, 'cancellations']);
-    Route::get('/profile/wishlist', [DashboardViewController::class, 'wishlist']);
-    Route::get('/profile/cart', [DashboardViewController::class, 'cart']);
 
     Route::get('/profile/info', [ProfileController::class, 'show']);
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,6 +42,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/address/update', [AddressController::class, 'update'])->name('profile.address.update');
     Route::get('/profile/address/create', [AddressController::class, 'create'])->name('profile.address.create');
     Route::post('/profile/address/store', [AddressController::class, 'store'])->name('profile.address.store');
+
+
+    Route::get('/profile/payment', [PaymentController::class, 'show']);
+    Route::get('/profile/payment/edit/{id}', [PaymentController::class, 'edit'])->name('profile.payment.edit');
+    Route::post('/profile/payment/update/{id}', [PaymentController::class, 'update'])->name('profile.payment.update');
+    Route::get('/profile/payment/create', [PaymentController::class, 'create'])->name('profile.payment.create');
+    Route::post('/profile/payment/store', [PaymentController::class, 'store'])->name('profile.payment.store');
+    Route::delete('/profile/payment/{id}', [PaymentController::class, 'destroy'])->name('profile.payment.destroy');
+
 
     Route::get('/wishlist', function () {
         return view('wishlist.show');
