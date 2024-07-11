@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProfileViewController;
+use App\Http\Controllers\DashboardViewController;
 use App\Http\Controllers\AuthViewController;
 use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -26,15 +28,23 @@ Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 })->name('dashboard');
 
-// Profile
-Route::get('/profile/info', [ProfileViewController::class, 'info']);
-Route::get('/profile/address', [ProfileViewController::class, 'address']);
-Route::get('/profile/payment', [ProfileViewController::class, 'payment']);
-Route::get('/profile/returns', [ProfileViewController::class, 'returns']);
-Route::get('/profile/cancellations', [ProfileViewController::class, 'cancellations']);
-Route::get('/profile/wishlist', [ProfileViewController::class, 'wishlist']);
-Route::get('/profile/cart', [ProfileViewController::class, 'cart']);
+// dashboard(временный)
+Route::get('/profile/payment', [DashboardViewController::class, 'payment']);
+Route::get('/profile/returns', [DashboardViewController::class, 'returns']);
+Route::get('/profile/cancellations', [DashboardViewController::class, 'cancellations']);
+Route::get('/profile/wishlist', [DashboardViewController::class, 'wishlist']);
+Route::get('/profile/cart', [DashboardViewController::class, 'cart']);
 
-Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
-Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+//profile
+Route::get('/profile/info', [ProfileController::class, 'show']);
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+//Adress
+Route::get('/profile/address', [AddressController::class, 'show']);
+Route::get('/profile/address/edit', [AddressController::class, 'edit'])->name('profile.address.edit');
+Route::post('/profile/address/update', [AddressController::class, 'update'])->name('profile.address.update');
+Route::get('/profile/address/create', [AddressController::class, 'create'])->name('profile.address.create');
+Route::post('/profile/address/store', [AddressController::class, 'store'])->name('profile.address.store');
+
 

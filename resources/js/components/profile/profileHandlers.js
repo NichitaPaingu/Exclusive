@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { showMessage } from '../navigation/messageHandlers';
 import { setupEditProfileForm } from './editProfileForm';
+import { setupAddressForms } from './addressHandlers';
 
 export function setupProfileLinks() {
     const profileLinks = document.querySelectorAll('.profile-link');
@@ -35,6 +35,7 @@ export function loadProfileContent(url) {
             document.getElementById('profile-content').innerHTML = response.data;
             setupProfileLinks();
             setupEditProfileForm();
+            setupAddressForms();
             highlightActiveLink(url);
         })
         .catch(error => {

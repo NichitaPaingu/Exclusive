@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function editProfile()
+    public function show()
     {
-        return view('profile.partials.edit_profile');
+        return view('dashboard.profile.partials.profile-info', ['user' => Auth::user()]);
     }
-    public function updateProfile(Request $request)
+    public function edit()
+    {
+        return view('dashboard.profile.partials.edit_profile');
+    }
+    public function update(Request $request)
     {
         $user = Auth::user();
         $user->update($request->only('first_name', 'last_name', 'email'));

@@ -13,35 +13,15 @@
 <body>
     <div class="container">
         <x-header />
+
         <div id="dynamic-content">
-            <!-- Success message -->
-        {{-- @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif --}}
-
-
 
             <div id="message-container"></div>
+
             {{ $slot }}
+
         </div>
+
         <x-footer/>
     </div>
 </body>

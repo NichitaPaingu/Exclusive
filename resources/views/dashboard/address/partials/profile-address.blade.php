@@ -12,4 +12,3 @@
         <a href="#" class="profile-link" data-url="/profile/address/create">Add Address</a>
     @endif
 </div>
-<div id="profile-content"></div>

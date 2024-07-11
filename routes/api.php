@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::middleware(['api', 'web'])->group(function () {
@@ -16,3 +17,4 @@ Route::middleware(['api', 'web'])->group(function () {
     Route::post('/login', [AuthController::class, 'store']);
     Route::post('/logout', [AuthController::class, 'destroy']);
 });
+
