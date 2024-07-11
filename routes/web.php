@@ -23,28 +23,29 @@ Route::get('/404', function () {
 Route::get('/ajax/register', [AuthViewController::class, 'showRegisterForm']);
 Route::get('/ajax/login', [AuthViewController::class, 'showLoginForm']);
 Route::get('/auth', [AuthViewController::class, 'create'])->name('auth');
+Route::get('/login', [AuthViewController::class, 'create'])->name('login'); // Маршрут для middleware
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.dashboard');
+    })->name('dashboard');
 
-// dashboard(временный)
-Route::get('/profile/payment', [DashboardViewController::class, 'payment']);
-Route::get('/profile/returns', [DashboardViewController::class, 'returns']);
-Route::get('/profile/cancellations', [DashboardViewController::class, 'cancellations']);
-Route::get('/profile/wishlist', [DashboardViewController::class, 'wishlist']);
-Route::get('/profile/cart', [DashboardViewController::class, 'cart']);
+    Route::get('/profile/payment', [DashboardViewController::class, 'payment']);
+    Route::get('/profile/returns', [DashboardViewController::class, 'returns']);
+    Route::get('/profile/cancellations', [DashboardViewController::class, 'cancellations']);
+    Route::get('/profile/wishlist', [DashboardViewController::class, 'wishlist']);
+    Route::get('/profile/cart', [DashboardViewController::class, 'cart']);
 
-//profile
-Route::get('/profile/info', [ProfileController::class, 'show']);
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/info', [ProfileController::class, 'show']);
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-//Adress
-Route::get('/profile/address', [AddressController::class, 'show']);
-Route::get('/profile/address/edit', [AddressController::class, 'edit'])->name('profile.address.edit');
-Route::post('/profile/address/update', [AddressController::class, 'update'])->name('profile.address.update');
-Route::get('/profile/address/create', [AddressController::class, 'create'])->name('profile.address.create');
-Route::post('/profile/address/store', [AddressController::class, 'store'])->name('profile.address.store');
+    Route::get('/profile/address', [AddressController::class, 'show']);
+    Route::get('/profile/address/edit', [AddressController::class, 'edit'])->name('profile.address.edit');
+    Route::post('/profile/address/update', [AddressController::class, 'update'])->name('profile.address.update');
+    Route::get('/profile/address/create', [AddressController::class, 'create'])->name('profile.address.create');
+    Route::post('/profile/address/store', [AddressController::class, 'store'])->name('profile.address.store');
+});
+
 
 

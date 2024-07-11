@@ -12,9 +12,10 @@ Route::get('/user', function (Request $request) {
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::middleware(['api', 'web'])->group(function () {
-    // API routes for authentication
     Route::post('/register', [RegisteredUserController::class, 'store']);
     Route::post('/login', [AuthController::class, 'store']);
+});
+Route::middleware(['auth', 'api', 'web'])->group(function () {
     Route::post('/logout', [AuthController::class, 'destroy']);
 });
 
