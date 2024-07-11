@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardViewController;
@@ -23,7 +22,7 @@ Route::get('/404', function () {
 Route::get('/ajax/register', [AuthViewController::class, 'showRegisterForm']);
 Route::get('/ajax/login', [AuthViewController::class, 'showLoginForm']);
 Route::get('/auth', [AuthViewController::class, 'create'])->name('auth');
-Route::get('/login', [AuthViewController::class, 'create'])->name('login'); // Маршрут для middleware
+Route::get('/login', [AuthViewController::class, 'create'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -45,7 +44,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/address/update', [AddressController::class, 'update'])->name('profile.address.update');
     Route::get('/profile/address/create', [AddressController::class, 'create'])->name('profile.address.create');
     Route::post('/profile/address/store', [AddressController::class, 'store'])->name('profile.address.store');
+
+    Route::get('/wishlist', function () {
+        return view('wishlist.show');
+    })->name('wishlist');
+
+    Route::get('/cart', function () {
+        return view('cart.show');
+    })->name('cart');
 });
+
+
+Route::get('/auth-check', function () {
+    return response()->json(['authenticated' => Auth::check()]);
+});
+
 
 
 

@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { loadEventListenerAuth } from '../auth/auth.js';
 import { setupProfileLinks, loadProfileContent } from '../profile/profileHandlers.js';
-import { setupLogoutForm } from '../auth/logout.js'; // Импортируем setupLogoutForm
-import { setupContactForm } from '../mail/contact.js'; // Импортируем setupContactForm
-
-
+import { setupLogoutForm } from '../auth/logout.js';
+import { setupContactForm } from '../mail/contact.js';
 
 export function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link, .breadcrumb-link');
@@ -38,11 +36,9 @@ export function setupNavigation() {
 function handleNavClick(event) {
     event.preventDefault();
     const url = this.getAttribute('data-url');
-    if (url.startsWith('/profile')) {
-        history.pushState(null, '', '/dashboard');
-        loadPageContent('/dashboard', url);
+    if (url === '/wishlist' || url === '/cart') {
+        checkAuthAndLoad(url);
     } else {
-        history.pushState(null, '', url);
         loadPageContent(url);
     }
 }
@@ -51,6 +47,24 @@ function handlePopState(event) {
     const state = event.state;
     const url = state ? state.url : location.pathname;
     loadPageContent(url);
+}
+
+function checkAuthAndLoad(url) {
+    axios.get('/auth-check')
+        .then(response => {
+            if (response.data.authenticated) {
+                // Пользователь аутентифицирован
+                loadPageContent(url);
+            } else {
+                // Пользователь не аутентифицирован
+                redirectToLogin();
+            }
+        })
+        .catch(() => {
+            // Если запрос на /user не удался, перенаправляем на страницу входа
+            console.log("Запрос не удался");
+            redirectToLogin();
+        });
 }
 
 function loadPageContent(url, profileUrl = null) {
@@ -93,4 +107,8 @@ function redirectTo404() {
         history.replaceState(null, '', '/404');
         loadPageContent('/404');
     }
+}
+
+function redirectToLogin() {
+    loadPageContent('/auth');
 }

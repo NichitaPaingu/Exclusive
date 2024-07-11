@@ -18,8 +18,8 @@
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
             </div>
             <nav>
-                <a class="nav-link" data-url="/profile/wishlist"><i class="fa-regular fa-heart"></i></a>
-                <a class="nav-link" data-url="/profile/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a class="nav-link" data-url="/wishlist"><i class="fa-regular fa-heart"></i></a>
+                <a class="nav-link" data-url="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 @auth
                     <div class="profile-menu">
                         <i class="fa-regular fa-user profile-icon"></i>

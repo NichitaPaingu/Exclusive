@@ -20,11 +20,6 @@
                     <li><a class="profile-link" data-url="/profile/returns">My Returns</a></li>
                     <li><a class="profile-link" data-url="/profile/cancellations">My Cancellations</a></li>
                 </ul>
-                <h3>Wishlist / Cart</h3>
-                <ul>
-                    <li><a class="profile-link" data-url="/profile/wishlist">Wishlist</a></li>
-                    <li><a class="profile-link" data-url="/profile/cart">Cart</a></li>
-                </ul>
             </aside>
             <div class="profile-content" id="profile-content">
                 <!-- Dynamic content will be loaded here -->

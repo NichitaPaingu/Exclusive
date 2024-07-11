@@ -22,13 +22,4 @@ class DashboardViewController extends Controller
         return view('dashboard.partials.profile-cancellations', ['user' => Auth::user()]);
     }
 
-    public function wishlist()
-    {
-        return view('dashboard.partials.profile-wishlist', ['user' => Auth::user()]);
-    }
-    public function cart()
-    {
-        return view('dashboard.partials.profile-cart', ['user' => Auth::user()]);
-    }
-
 }
